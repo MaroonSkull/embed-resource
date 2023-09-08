@@ -5,12 +5,12 @@ C++ projects.
 
 Include this repository in your CMake based project:
 
-    git submodule add https://github.com/cyrilcode/embed-resource.git lib/embed-resource
+    git submodule add https://github.com/MaroonSkull/embed-resource.git embed-resource
 
 Then add to your CMakeLists.txt for your project:
 
-    include_directories(lib/embed-resource)
-    add_subdirectory(lib/embed-resource)
+    include_directories(embed-resource)
+    add_subdirectory(embed-resource)
 
 Now you can add your resources, by calling the provided `embed_resources()` function in your
 CMakeLists.txt file:
