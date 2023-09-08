@@ -7,7 +7,7 @@ int main(int argc, char** argv)
 {
     if (argc < 3) {
         std::cerr << "USAGE: " << argv[0] << " {sym} {rsrc}" << std::endl << std::endl
-                          << "  Creates {sym}.c from the contents of {rsrc}"  << std::endl;
+            << "  Creates {sym}.cpp from the contents of {rsrc}" << std::endl;
         return EXIT_FAILURE;
     }
 
@@ -24,6 +24,8 @@ int main(int argc, char** argv)
     ofs.open(argv[1]);
 
     ofs << "#include <stdlib.h>" << std::endl;
+    ofs << "#include <Resource.h>" << std::endl;
+
     ofs << "const char _resource_" << sym << "[] = {" << std::endl;
 
     size_t lineCount = 0;

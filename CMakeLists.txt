@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.5)
+﻿cmake_minimum_required(VERSION 3.5)
 project(EmbedResource)
 
 set(CMAKE_CXX_STANDARD 11)
@@ -8,10 +8,13 @@ function(embed_resources out_var)
     set(result)
     foreach(in_f ${ARGN})
         file(RELATIVE_PATH src_f ${CMAKE_CURRENT_SOURCE_DIR} "${CMAKE_CURRENT_SOURCE_DIR}/${in_f}")
-        set(out_f "${PROJECT_BINARY_DIR}/${in_f}.c")
+        set(out_f "${PROJECT_BINARY_DIR}/${in_f}.cpp")
         get_filename_component(out_f_dir "${out_f}" DIRECTORY)
         add_custom_command(OUTPUT ${out_f}
                 COMMAND ${CMAKE_COMMAND} -E make_directory "${out_f_dir}"
+                # Можно ещё добавить
+                # COMMAND cmake -E touch "./....hpp"
+                #without this line depends is not working and custom command runs everytime when we build
                 COMMAND embed-resource "${out_f}" "${src_f}"
                 DEPENDS "${in_f}" embed-resource
                 WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
